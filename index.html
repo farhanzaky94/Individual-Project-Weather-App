@@ -13,30 +13,41 @@
   </head>
   <body>
     <div class="container-fluid gradient-bg">
+      <!-- Search Container Added Here -->
+      <div class="d-flex justify-content-center my-4">
+        <div class="search-container d-flex align-items-center">
+          <input
+            type="text"
+            class="form-control border-0"
+            placeholder="Search City"
+          />
+          <button class="btn btn-light ms-2">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+      </div>
       <div class="container my-4">
         <div class="row align-items-center">
-          <div class="col-sm-6 col-md-4 col-lg-2 text-center border p-3">
+          <div class="col-sm-4 col-md-3 col-lg-1 text-center border p-3">
             Col One
           </div>
-
-          <div class="col-sm-6 col-md-4 col-lg-2 text-center border p-3">
+          <div class="col-sm-4 col-md-3 col-lg-1 text-center border p-3">
             Col Two
           </div>
-
-          <div class="col-sm-6 col-md-4 col-lg-2 text-center border p-3">
+          <div class="col-sm-4 col-md-3 col-lg-1 text-center border p-3">
             Col Three
           </div>
-
-          <div class="col-sm-6 col-md-4 col-lg-2 text-center border p-3">
+          <div class="col-sm-4 col-md-3 col-lg-1 text-center border p-3">
             Col Four
           </div>
-
-          <div class="col-sm-6 col-md-4 col-lg-2 text-center border p-3">
+          <div class="col-sm-4 col-md-3 col-lg-1 text-center border p-3">
             Col Five
           </div>
-
-          <div class="col-sm-6 col-md-4 col-lg-2 text-center border p-3">
+          <div class="col-sm-4 col-md-3 col-lg-1 text-center border p-3">
             Col Six
+          </div>
+          <div class="col-sm-4 col-md-3 col-lg-1 text-center border p-3">
+            Col Seven
           </div>
         </div>
       </div>
@@ -64,6 +75,18 @@
         background: linear-gradient(to bottom, #6db3f2, #1e69de);
         min-height: 100vh;
         padding: 20px;
+      }
+
+      .search-container {
+        background: #5c92e0;
+        border-radius: 25px;
+        padding: 15px;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      input::placeholder {
+        color: black;
       }
     </style>
     <script
