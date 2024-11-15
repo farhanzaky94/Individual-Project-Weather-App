@@ -116,20 +116,20 @@
     ></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Define the API URL
+        
         const apiUrl =
           "https://api.open-meteo.com/v1/forecast?latitude=1.1494&longitude=104.0249&current_weather=true";
 
-        // Fetch data from the API
+        
         fetch(apiUrl)
-          .then((response) => response.json()) // Parse the JSON from the response
+          .then((response) => response.json()) 
           .then((data) => {
-            // Extract weather data
-            const cityName = "Your City"; // change to a static city name or dynamically
+            
+            const cityName = "Your City"; 
             const temperature = data.current_weather.temperature;
             const windSpeed = data.current_weather.windspeed;
             const humidity = data.current_weather.humidity || "N/A";
-            const weatherDescription = "Cloudy"; // Replace with API data if available (depending on the API response)
+            const weatherDescription = "Cloudy"; 
 
             document.getElementById("cityName").innerText = cityName;
             document.getElementById(
