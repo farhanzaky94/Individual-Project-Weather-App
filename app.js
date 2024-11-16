@@ -35,3 +35,16 @@ function getDayName(index) {
   const today = new Date();
   return daysOfWeek[(today.getDay() + index) % 7];
 }
+const today = new Date();
+forecastElements.forEach((element, index) => {
+  if (index < dailyData.temperature_2m_max.length) {
+    const dayName = getDayName(index, today);
+    const maxTemp = dailyData.temperature_2m_max[index];
+    const minTemp = dailyData.temperature_2m_min[index];
+
+    element.innerHTML = `
+      <p>${dayName}</p>
+      <p>${maxTemp}&deg; / ${minTemp}&deg;</p>
+    `;
+  }
+});
