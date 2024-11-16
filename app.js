@@ -1,26 +1,34 @@
-const apiUrl =
-  "https://api.open-meteo.com/v1/forecast?latitude=1.1494&longitude=104.0249&daily=temperature_2m_max,temperature_2m_min&current_weather=true&timezone=auto";
+document.addEventListener("DOMContentLoaded", function () {
+  const apiUrl =
+    "https://api.open-meteo.com/v1/forecast?latitude=1.1494&longitude=104.0249&current_weather=true";
 
-fetch(apiUrl)
-  .then((response) => response.json())
-  .then((data) => {
-    const dailyData = data.daily;
-    const forecastElements = document.querySelectorAll(".daily-forecast");
+  document.getElementById("loadingMessage").style.display = "block";
 
-    forecastElements.forEach((element, index) => {
-      if (index < dailyData.temperature_2m_max.length) {
-        const dayName = getDayName(index);
-        const maxTemp = dailyData.temperature_2m_max[index];
-        const minTemp = dailyData.temperature_2m_min[index];
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      const cityName = "Your City";
+      const temperature = data.current_weather.temperature;
+      const windSpeed = data.current_weather.windspeed;
+      const humidity = data.current_weather.humidity || "N/A";
+      const weatherDescription = "Cloudy";
 
-        element.innerHTML = `
-          <p>${dayName}</p>
-          <p>${maxTemp}&deg; / ${minTemp}&deg;</p>
-        `;
-      }
+      document.getElementById("cityName").innerText = cityName;
+      document.getElementById("currentTemp").innerText = `${temperature}°`;
+      document.getElementById("windSpeed").innerText = `${windSpeed} mph`;
+      document.getElementById("humidity").innerText = `${humidity}%`;
+      document.getElementById("weatherDescription").innerText =
+        weatherDescription;
+
+      document.getElementById("loadingMessage").style.display = "none";
+    })
+    .catch((error) => {
+      console.error("Error fetching weather data:", error);
+      document.getElementById("cityName").innerText = "Error fetching data";
+
+      document.getElementById("loadingMessage").style.display = "none";
     });
-  })
-  .catch((error) => console.error("Error fetching weather data:", error));
+});
 
 function getDayName(index) {
   const daysOfWeek = [
