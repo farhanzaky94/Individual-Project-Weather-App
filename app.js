@@ -1,8 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const apiUrl =
-    "https://api.open-meteo.com/v1/forecast?latitude=1.1494&longitude=104.0249&current_weather=true";
+  const loadingMessage = document.getElementById("loadingMessage");
+  const cityNameElement = document.getElementById("cityName");
+  const tempElement = document.getElementById("currentTemp");
+  const windSpeedElement = document.getElementById("windSpeed");
+  const humidityElement = document.getElementById("humidity");
+  const weatherDescriptionElement =
+    document.getElementById("weatherDescription");
 
-  document.getElementById("loadingMessage").style.display = "block";
+  const apiUrl =
+    "https://api.open-meteo.com/v1/forecast?latitude=1.1494&longitude=104.0249&current_weather=true&daily=temperature_2m_max,temperature_2m_min&timezone=auto";
+
+  loadingMessage.style.display = "block";
 
   fetch(apiUrl)
     .then((response) => response.json())
@@ -13,20 +21,35 @@ document.addEventListener("DOMContentLoaded", function () {
       const humidity = data.current_weather.humidity || "N/A";
       const weatherDescription = "Cloudy";
 
-      document.getElementById("cityName").innerText = cityName;
-      document.getElementById("currentTemp").innerText = `${temperature}°`;
-      document.getElementById("windSpeed").innerText = `${windSpeed} mph`;
-      document.getElementById("humidity").innerText = `${humidity}%`;
-      document.getElementById("weatherDescription").innerText =
-        weatherDescription;
+      cityNameElement.innerText = cityName;
+      tempElement.innerText = `${temperature}°`;
+      windSpeedElement.innerText = `${windSpeed} mph`;
+      humidityElement.innerText = `${humidity}%`;
+      weatherDescriptionElement.innerText = weatherDescription;
 
-      document.getElementById("loadingMessage").style.display = "none";
+      const forecastElements = document.querySelectorAll(".daily-forecast");
+      const dailyData = data.daily;
+
+      forecastElements.forEach((element, index) => {
+        if (index < dailyData.temperature_2m_max.length) {
+          const dayName = getDayName(index);
+          const maxTemp = dailyData.temperature_2m_max[index];
+          const minTemp = dailyData.temperature_2m_min[index];
+
+          element.innerHTML = `
+            <p>${dayName}</p>
+            <p>${maxTemp}&deg; / ${minTemp}&deg;</p>
+          `;
+        }
+      });
+
+      loadingMessage.style.display = "none";
     })
     .catch((error) => {
       console.error("Error fetching weather data:", error);
-      document.getElementById("cityName").innerText = "Error fetching data";
+      cityNameElement.innerText = "Error fetching data";
 
-      document.getElementById("loadingMessage").style.display = "none";
+      loadingMessage.style.display = "none";
     });
 });
 
@@ -43,6 +66,7 @@ function getDayName(index) {
   const today = new Date();
   return daysOfWeek[(today.getDay() + index) % 7];
 }
+
 const today = new Date();
 forecastElements.forEach((element, index) => {
   if (index < dailyData.temperature_2m_max.length) {
