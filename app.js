@@ -10,7 +10,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const apiUrl =
     "https://api.open-meteo.com/v1/forecast?latitude=1.1494&longitude=104.0249&current_weather=true&daily=temperature_2m_max,temperature_2m_min&timezone=auto";
 
-  loadingMessage.style.display = "block";
+  function setLoading(isLoading) {
+    loadingMessage.style.display = isLoading ? "block" : "none";
+  }
+
+  setLoading(true);
 
   fetch(apiUrl)
     .then((response) => response.json())
@@ -43,13 +47,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
 
-      loadingMessage.style.display = "none";
+      setLoading(false);
     })
     .catch((error) => {
       console.error("Error fetching weather data:", error);
       cityNameElement.innerText = "Error fetching data";
 
-      loadingMessage.style.display = "none";
+      setLoading(false);
     });
 });
 
