@@ -48,7 +48,7 @@
       <div class="row mb-4">
         <div class="col-md-8 mx-auto weather-main text-center">
           <p id="loadingMessage">Loading weather data...</p>
-          
+
           <h2 id="cityName">City Name</h2>
           <p id="date">21.04.2021</p>
           <div class="current-weather" id="currentTemp">20&deg;</div>
@@ -105,7 +105,7 @@
             <div class="col daily-forecast">
               <p>Saturday</p>
               <p>26&deg; Sunny</p>
-            
+            </div>
           </div>
         </div>
       </div>
@@ -118,20 +118,17 @@
     ></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        
         const apiUrl =
           "https://api.open-meteo.com/v1/forecast?latitude=1.1494&longitude=104.0249&current_weather=true";
 
-        
         fetch(apiUrl)
-          .then((response) => response.json()) 
+          .then((response) => response.json())
           .then((data) => {
-            
-            const cityName = "Your City"; 
+            const cityName = "Your City";
             const temperature = data.current_weather.temperature;
             const windSpeed = data.current_weather.windspeed;
             const humidity = data.current_weather.humidity || "N/A";
-            const weatherDescription = "Cloudy"; 
+            const weatherDescription = "Cloudy";
 
             document.getElementById("cityName").innerText = cityName;
             document.getElementById(
