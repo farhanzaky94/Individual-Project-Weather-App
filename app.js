@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   const loadingMessage = document.getElementById("loadingMessage");
   const cityNameElement = document.getElementById("cityName");
   const tempElement = document.getElementById("currentTemp");
@@ -16,45 +16,43 @@ document.addEventListener("DOMContentLoaded", function () {
 
   setLoading(true);
 
-  fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      const cityName = "Your City";
-      const temperature = data.current_weather.temperature;
-      const windSpeed = data.current_weather.windspeed;
-      const humidity = data.current_weather.humidity || "N/A";
-      const weatherDescription = "Cloudy";
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
 
-      cityNameElement.innerText = cityName;
-      tempElement.innerText = `${temperature}°`;
-      windSpeedElement.innerText = `${windSpeed} mph`;
-      humidityElement.innerText = `${humidity}%`;
-      weatherDescriptionElement.innerText = weatherDescription;
+    const cityName = "Your City";
+    const temperature = data.current_weather.temperature;
+    const windSpeed = data.current_weather.windspeed;
+    const humidity = data.current_weather.humidity || "N/A";
+    const weatherDescription = "Cloudy";
 
-      const forecastElements = document.querySelectorAll(".daily-forecast");
-      const dailyData = data.daily;
+    cityNameElement.innerText = cityName;
+    tempElement.innerText = `${temperature}°`;
+    windSpeedElement.innerText = `${windSpeed} mph`;
+    humidityElement.innerText = `${humidity}%`;
+    weatherDescriptionElement.innerText = weatherDescription;
 
-      forecastElements.forEach((element, index) => {
-        if (index < dailyData.temperature_2m_max.length) {
-          const dayName = getDayName(index);
-          const maxTemp = dailyData.temperature_2m_max[index];
-          const minTemp = dailyData.temperature_2m_min[index];
+    const forecastElements = document.querySelectorAll(".daily-forecast");
+    const dailyData = data.daily;
 
-          element.innerHTML = `
-            <p>${dayName}</p>
-            <p>${maxTemp}&deg; / ${minTemp}&deg;</p>
-          `;
-        }
-      });
+    forecastElements.forEach((element, index) => {
+      if (index < dailyData.temperature_2m_max.length) {
+        const dayName = getDayName(index);
+        const maxTemp = dailyData.temperature_2m_max[index];
+        const minTemp = dailyData.temperature_2m_min[index];
 
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.error("Error fetching weather data:", error);
-      cityNameElement.innerText = "Error fetching data";
-
-      setLoading(false);
+        element.innerHTML = `
+          <p>${dayName}</p>
+          <p>${maxTemp}&deg; / ${minTemp}&deg;</p>
+        `;
+      }
     });
+  } catch (error) {
+    console.error("Error fetching weather data:", error);
+    cityNameElement.innerText = "Error fetching data";
+  } finally {
+    setLoading(false);
+  }
 });
 
 function getDayName(index) {
