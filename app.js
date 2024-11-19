@@ -72,12 +72,12 @@ function getDayName(index) {
 function getWeatherIconUrl(weatherDescription) {
   switch (weatherDescription.toLowerCase()) {
     case "clear sky":
-      return "icons/clear-sky.png"; //Masukin URL fotonya
+      return "icons/clear-sky.png";
     case "cloudy":
-      return "icons/cloudy.png"; //Masukin URL fotonya
+      return "icons/cloudy.png";
     case "rain":
     case "rainy":
-      return "icons/rain.png"; //Masukin URL fotonya
+      return "icons/rain.png";
     default:
       return ""; //incase no icon found
   }
