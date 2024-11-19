@@ -69,6 +69,20 @@ function getDayName(index) {
   return daysOfWeek[(today.getDay() + index) % 7];
 }
 
+function getWeatherIconUrl(weatherDescription) {
+  switch (weatherDescription.toLowerCase()) {
+    case "clear sky":
+      return "icons/clear-sky.png"; //Masukin URL fotonya
+    case "cloudy":
+      return "icons/cloudy.png"; //Masukin URL fotonya
+    case "rain":
+    case "rainy":
+      return "icons/rain.png"; //Masukin URL fotonya
+    default:
+      return ""; //incase no icon found
+  }
+}
+
 const today = new Date();
 forecastElements.forEach((element, index) => {
   if (index < dailyData.temperature_2m_max.length) {

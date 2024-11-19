@@ -32,3 +32,9 @@ body {
   text-align: center;
   margin: 10px 5px;
 }
+
+#weatherIcon {
+  width: 100px;
+  height: auto;
+  margin: 15px 0;
+}
