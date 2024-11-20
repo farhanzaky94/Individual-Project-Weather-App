@@ -8,20 +8,16 @@ body {
 .weather-main,
 .greeting-section {
   width: 100%;
-  max-width: 600px;
+  max-width: 450px;
   margin: 20px auto;
-  padding: 20px;
+  padding: 15px;
   border-radius: 15px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .current-weather {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: bold;
-}
-
-.greeting-section {
-  background: #ffccbc;
 }
 
 .daily-forecast {
@@ -32,18 +28,16 @@ body {
   text-align: center;
   margin: 10px 5px;
 }
+
 .weather-icon {
   display: block;
   margin: 0 auto;
-  max-width: 50px;
+  max-width: 40px;
 }
+
 .container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-}
-
-.weather-main {
-  background: #ffffff;
+  gap: 15px;
 }
