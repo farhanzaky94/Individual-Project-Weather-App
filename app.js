@@ -91,8 +91,13 @@ forecastElements.forEach((element, index) => {
     const minTemp = dailyData.temperature_2m_min[index];
 
     element.innerHTML = `
-      <p>${dayName}</p>
-      <p>${maxTemp}&deg; / ${minTemp}&deg;</p>
-    `;
+  <p>${dayName}</p>
+  <img class="weather-icon" src="URL_TO_WEATHER_ICON" alt="Weather Icon" />
+  <p>${maxTemp}&deg; / ${minTemp}&deg;</p>
+`;
   }
+});
+const weatherIcons = document.querySelectorAll(".weather-icon");
+weatherIcons.forEach((icon) => {
+  icon.src = "";
 });

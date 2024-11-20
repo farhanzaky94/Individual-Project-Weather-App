@@ -18,21 +18,16 @@
         color: #333;
       }
       .weather-main {
-        border-radius: 15px;
-        background: #ffffff;
-        padding: 20px;
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-      }
+  background: #ffffff;
+}
       .current-weather {
         font-size: 5rem;
         font-weight: bold;
       }
       .greeting-section {
-        border-radius: 15px;
-        background: #ffccbc;
-        padding: 20px;
-        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-      }
+  background: #ffccbc;
+}
+
       .daily-forecast {
         border-radius: 15px;
         background: #ffffff;
@@ -41,12 +36,27 @@
         text-align: center;
         margin: 10px 5px;
       }
-      
-      #weatherIcon {
-        width: 100px;
-        height: auto;
-        margin: 15px 0;
-      }
+      .weather-icon {
+  display: block;
+  margin: 0 auto; 
+  max-width: 50px; 
+}
+.weather-main,
+.greeting-section {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+     
     </style>
   </head>
   <body>
@@ -58,18 +68,18 @@
           <p id="date">21.04.2021</p>
           <div class="current-weather" id="currentTemp">20&deg;</div>
           <p id="weatherDescription">Cloudy</p>
-          <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+          <img class="weather-icon" src="image/clouds.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
           <div class="d-flex justify-content-around mt-4">
             <div>
               <p>Wind</p>
               <p id="windSpeed">6.1 mph</p>
-              <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+              <img class="weather-icon" src="image/wind.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
             <div>
               <p>Humidity</p>
               <p id="humidity">90%</p>
-              <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+              <img class="weather-icon" src="image/humidity.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
           </div>
@@ -84,7 +94,7 @@
             <div>
               <p class="current-weather" id="greetingTemp">20&deg;</p>
               <p>Feels like 19&deg; - Cloudy</p>
-              <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+              <img class="weather-icon" src="image/clouds.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
           </div>
@@ -97,37 +107,37 @@
             <div class="col daily-forecast">
               <p>Monday</p>
               <p>20&deg; Cloudy</p>
-              <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+              <img class="weather-icon" src="image/clouds.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
             <div class="col daily-forecast">
               <p>Tuesday</p>
               <p>25&deg; Sunny</p>
-              <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+              <img class="weather-icon" src="image/clear.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
             <div class="col daily-forecast">
               <p>Wednesday</p>
               <p>22&deg; Rainy</p>
-              <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+              <img class="weather-icon" src="image/rain.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
             <div class="col daily-forecast">
               <p>Thursday</p>
               <p>18&deg; Windy</p>
-              <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+              <img class="weather-icon" src="image/drizzle.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
             <div class="col daily-forecast">
               <p>Friday</p>
               <p>24&deg; Partly Cloudy</p>
-              <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+              <img class="weather-icon" src="image/clouds.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
             <div class="col daily-forecast">
               <p>Saturday</p>
               <p>26&deg; Sunny</p>
-              <img id="weatherIcon" src="" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
+              <img class="weather-icon" src="image/clear.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
           </div>
