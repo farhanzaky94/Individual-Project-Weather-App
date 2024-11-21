@@ -116,7 +116,7 @@
               <img class="weather-icon" src="image/clear.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
 
             </div>
-            <div class="col daily-forecast">
+            <div class="col daily-forecast" id="currentTemp">
               <p>Wednesday</p>
               <p>22&deg; Rainy</p>
               <img class="weather-icon" src="image/rain.png" alt="Weather Icon" class="my-3" style="width: 100px; height: auto;" />
@@ -177,15 +177,16 @@
         const { lat, lon } = geoData[0];
 
         // Fetch the weather data using the coordinates
-        const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+        const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min`;
         const weatherResponse = await fetch(weatherUrl);
         const weatherData = await weatherResponse.json();
 
         // Update the HTML elements with the fetched data
         cityNameElement.innerText = city; // Show the city name input by user
-        tempElement.innerText = `${weatherData.current_weather.temperature}°C`;
-        windSpeedElement.innerText = `${weatherData.current_weather.windspeed} mph`;
-        humidityElement.innerText = `${weatherData.current_weather.humidity || "N/A"}%`;
+        tempElement.innerText = `${weatherData.current.temperature_2m}°C`;
+        windSpeedElement.innerText = `${weatherData.current.wind_speed_10m} mph`;
+        humidityElement.innerText = `${weatherData.current.relative_humidity_2m }%`;
+        //humidity.innerText = data.current.relative_humidity_2m + " %";
         weatherDescriptionElement.innerText = "Cloudy"; 
 
       } catch (error) {

@@ -3,13 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const cityNameElement = document.getElementById("cityName");
   const tempElement = document.getElementById("currentTemp");
   const windSpeedElement = document.getElementById("windSpeed");
-  const humidityElement = document.getElementById("humidity");
+  //const humidityElement = document.getElementById("humidity");
   const weatherDescriptionElement =
     document.getElementById("weatherDescription");
   const searchButton = document.getElementById("searchButton");
   const cityInput = document.getElementById("cityInput");
   const dateElement = document.getElementById("date");
   const forecastContainers = document.querySelectorAll(".daily-forecast");
+  const humidity = document.getElementById("humidity");
 
   function getWeatherDescription(code) {
     const descriptions = {
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return descriptions[code] || "Unknown";
   }
 
-  const apiKey = "2d595af8c14db7b44239c6032b679612";
+  //const apiKey = "2d595af8c14db7b44239c6032b679612";
 
   // Set current date
   function updateDate() {
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const { lat, lon } = geoData[0];
 
       // Fetch the current weather data using the coordinates
-      const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+      const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=1.1494&longitude=104.0249&current=temperature_2m,relative_humidity_2m,apparent_temperature,rain,showers,weather_code,wind_speed_10m&timezone=Asia%2FSingapore&models=best_match`;
       const weatherResponse = await fetch(weatherUrl);
       const weatherData = await weatherResponse.json();
 
@@ -71,9 +72,10 @@ document.addEventListener("DOMContentLoaded", function () {
       cityNameElement.innerText = city; // Show the city name input by user
       tempElement.innerText = `${weatherData.current_weather.temperature}°C`;
       windSpeedElement.innerText = `${weatherData.current_weather.windspeed} mph`;
-      humidityElement.innerText = `${
-        weatherData.current_weather.humidity || "N/A"
-      }%`;
+      // //humidityElement.innerText = `${
+      //   weatherData.current_weather.humidity || ""
+      // }%`;
+      //humidity.innerText = data.current.relative_humidity_2m + " %";
       weatherDescriptionElement.innerText = "Cloudy";
 
       // Fetch the weather forecast data for the next 6 days
